@@ -3,33 +3,37 @@ import ReactDOM from 'react-dom'
 
 const Header = (props) => {
   return (
-  <>
+  <div>
     <h1>{props.course_name}</h1>
-  </>
+  </div>
   )
 }
 
 const Total = (props) => {
   return (
-    <>
-      <p>Number of exercises {props.ex1_no + props.ex2_no + props.ex3_no}</p>
-    </>
+    <div>
+      <p>Number of exercises {props.ex_no}</p>
+    </div>
+  )
+}
+
+const Part = (props) => {
+  return (
+    <div>
+      <p>
+      {props.part_name} {props.ex_no}
+      </p>
+    </div>
   )
 }
 
 const Content = (props) => {
   return (
-    <>
-      <p>
-        {props.part1_name} {props.ex1_no}
-      </p>
-      <p>
-        {props.part2_name} {props.ex2_no}
-      </p>
-      <p>
-        {props.part3_name} {props.ex3_no}
-      </p>
-    </>
+    <div>
+      <Part part_name={props.name1} ex_no={props.ex1_no} />
+      <Part part_name={props.name2} ex_no={props.ex2_no} />
+      <Part part_name={props.name3} ex_no={props.ex3_no} />
+    </div>
   )
 }
 
@@ -45,9 +49,9 @@ const App = () => {
   return (
     <div>
       <Header course_name={course} />
-      <Content part1_name={part1} part2_name={part2} part3_name={part3}
+      <Content name1={part1} name2={part2} name3={part3}
        ex1_no={exercises1} ex2_no={exercises2} ex3_no={exercises3} />
-      <Total ex1_no={exercises1} ex2_no={exercises2} ex3_no={exercises3} />
+      <Total ex_no={exercises1+exercises2+exercises3} />
     </div>
   )
 }
